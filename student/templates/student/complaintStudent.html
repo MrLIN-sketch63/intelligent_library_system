@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/styleComplaintStudent.css" />
+    <script defer src="/static/js/scriptComplaintStudent.js"></script>
+    <title>Complaint Page</title>
+  </head>
+  <body>
+    <div class="main">
+      <form method="POST">
+          {%csrf_token %}
+          <div class="one">
+            <label for="books" class="books">Choose a Book:</label>
+                {{ c_form.complaint_book }}
+          </div>
+          <br>
+          <div class="two">
+            <label for="inputField" class="enter">Enter your complaint:</label>
+              {{ c_form.complaint_content }}
+            <button type="submit" class="submit">Submit</button>
+          </div>
+          </form>
+        <div class="button-container">
+        <form method="POST">
+            {% csrf_token %}
+            <button class="btn-2" name="s_book">Search For New Books</button>
+            <button class="btn-1" name="inventory">Manage Your Inventory</button>
+            <button class="btn-3" name="complaint">Lodge a Complaint</button>
+            <button class="btn-4" name="account">Your Account</button>
+            <button class="btn-5" name="logout">Log Out</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

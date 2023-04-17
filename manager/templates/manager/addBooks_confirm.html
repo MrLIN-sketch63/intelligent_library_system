@@ -1,0 +1,66 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+    }
+
+    h4 {
+        font-size: 32px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+        color: #333;
+    }
+
+    div {
+        max-width: 500px;
+        margin: auto;
+        padding: 30px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+
+    p {
+        font-size: 22px;
+        margin-bottom: 10px;
+        color: #555;
+        line-height: 1.5;
+    }
+
+    h2 {
+        font-size: 36px;
+        margin-top: 40px;
+        text-align: center;
+        color: #4169E1;
+    }
+
+    a {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        color: #fff;
+        background-color: #B0C4DE;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    a:hover {
+        background-color: #0000FF;
+    }
+</style>
+
+<div>
+    <h4> Book detail:  </h4>
+    <p> Title:&nbsp{{find_book.title}}</p>
+    <p> ISBN:&nbsp {{find_book.isbn}}</p>
+    <p> Author:&nbsp {{find_book.author}}</p>
+    <p> Category:&nbsp {{find_book.category}}</p>
+    <p> Description:&nbsp {{find_book.description}}</p>
+    <h2> Add book Successful!!! </h2>
+    <a href="{% url 'bookInventory' %}"> Back </a>
+</div>
+
+

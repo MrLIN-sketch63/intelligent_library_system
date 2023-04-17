@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load student_custom_filters %} <!--  load the custom_filters module -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/styleManageInventoryStudent.css" />
+    <script defer src="/static/js/scriptManageInventoryStudent.js"></script>
+    <title>Manage Inventory</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <h1 class="headerChild">Book inventory</h1>
+      </div>
+      <div class="button-container">
+        <a class="btn-1" href="{% url 'bookInventory' %}">All</a>
+        <a class="btn-2" href="{% url 'bookInventory' %}?q=Education">Education</a>
+        <a class="btn-3" href="{% url 'bookInventory' %}?q=Fiction">Fiction</a>
+        <a class="btn-4" href="{% url 'bookInventory' %}?q=Biography">Biography</a>
+        <a class="btn-5" href="{% url 'bookInventory' %}?q=Comics">Comics</a>
+        <a class="btn-6" href="{% url 'bookInventory' %}?q=History">History</a>
+      </div>
+      {% if find_category_book|list_length == 0 %}
+        <h2> No books in the book inventory  </h2>
+      {% else %}
+          <div class="books">
+            <ul class="list">
+                {% for book in find_category_book %}
+                    <li class="one">
+                        <a> {{ book.title }} &nbsp(ISBN: {{book.isbn}})</a>
+                    </li>
+                {% endfor %}
+            </ul>
+          </div>
+      {% endif %}
+      <div class="overlay hide"></div>
+      <div class="modal hide">
+        <button class="close-modal">&times;</button>
+        <div class="container">
+        <p class="return">Click confirm to return this book</p>
+        <button class="confirm btn-4">Confirm</button>
+      </div>
+      </div>
+      <div class="button-container">
+        <form method="POST">
+          {% csrf_token %}
+          <button class="btn-44" name="back" >Back</button>
+          <button class="btn-11" name="add" >Add a book</button>
+          <button class="btn-22" name="update">Update a book</button>
+          <button class="btn-33" name="delete">Delete a book</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

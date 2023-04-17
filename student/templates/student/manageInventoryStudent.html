@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load student_custom_filters %} <!--  load the custom_filters module -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/styleManageInventoryStudent.css" />
+    <script defer src="/static/js/scriptManageInventoryStudent.js"></script>
+    <title>Manage Inventory</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <h1 class="headerChild">Click a book to return</h1>
+      </div>
+      <div class="button-container">
+        <a class="btn-1" href="{% url 'inventory' %}">All</a>
+        <a class="btn-2" href="{% url 'inventory' %}?q=Education">Education</a>
+        <a class="btn-3" href="{% url 'inventory' %}?q=Fiction">Fiction</a>
+        <a class="btn-4" href="{% url 'inventory' %}?q=Biography">Biography</a>
+        <a class="btn-5" href="{% url 'inventory' %}?q=Comics">Comics</a>
+        <a class="btn-6" href="{% url 'inventory' %}?q=History">History</a>
+      </div>
+      {% if available_book|list_length == 0 %}
+        <h2> You hava not borrowed any books </h2>
+      {% else %}
+          <div class="books">
+            <ul class="list">
+                {% for book in available_book %}
+                    <li class="one">
+                        <a href="{% url 'returnBooks' book.borrow_book_isbn.isbn %}"> {{ book.borrow_book_isbn.title }} &nbsp(ISBN: {{book.borrow_book_isbn.isbn}})
+                             &nbsp&nbsp [Loan Date: {{book.loan_date}}] &nbsp&nbsp [Expiry: {{book.expiry_date}}]  </a>
+                    </li>
+                {% endfor %}
+            </ul>
+          </div>
+      {% endif %}
+      <div class="overlay hide"></div>
+      <div class="modal hide">
+        <button class="close-modal">&times;</button>
+        <div class="container">
+        <p class="return">Click confirm to return this book</p>
+        <button class="confirm btn-4">Confirm</button>
+      </div>
+      </div>
+      <div class="button-container">
+        <form method="POST">
+          {% csrf_token %}
+          <button class="btn-11" name="inventory" >Manage Your Inventory</button>
+          <button class="btn-22" name="s_book">Search For New Books</button>
+          <button class="btn-33" name="complaint">Lodge a Complaint</button>
+          <button class="btn-44" name="account">Your Account</button>
+          <button class="btn-55" name="logout">Log Out</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

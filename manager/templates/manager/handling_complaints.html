@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/styleBook.css">
+  <script defer src="/static/js/scriptBook.js"></script>
+  <title>Book</title>
+</head>
+<body>
+  <div class="main">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <h2 class="isbn">Complainant:&nbsp{{c_session.complainant_name}}</h2>
+            <h2 class="author">Title:&nbsp{{c_session.complaint_book.title}}</h2>
+            <h2 class="category">Content:&nbsp{{c_session.complaint_content}}</h2>
+            <br>
+            <p class="confirmText">Click to confirm if the problem has been solved</p>
+            <button class="confirm" name="handle_confirm">Confirm</button>
+        </div>
+    </form>
+  </div>
+
+</body>
+</html>

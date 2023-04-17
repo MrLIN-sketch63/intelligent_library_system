@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Intelligent Library Management system for both the administrations and the students."
+    />
+    <title>Intelligent Library Management System</title>
+    <link rel="stylesheet" href="/static/css/styleLogIn.css" />
+    <script defer src="/static/js/scriptLogInStudent.js"></script>
+    <link rel="icon" href="/static/img/logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Play&family=Tourney&display=swap"
+    rel="stylesheet"
+  />
+  </head>
+  <body>
+    <video autoplay loop muted plays-inline src="/static/video/library.mp4" type = video/ class="video"></video>
+    <header class="nav">
+      <div class="header-logo">
+        <a href="{% url 'home' %}" class="ils-logo-link">
+          <img class="ils-logo" src="/static/img/logo.jpg" alt="ils logo" />
+        </a>
+      </div>
+      <h1 class="nav-header">Intelligent Library Management System</h1>
+      <nav class="main-nav">
+        <ul class="hero-nav-list">
+          <li><a class="hero-nav about" href="#about">About</a></li>
+          <li><a class="hero-nav show-modal" href="{% url 'register' %}">Sign up</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="section-hero">
+        <!-- <div class="header-1">
+          <h1 class="choose">Choose Account Type</h1>
+        </div> -->
+        <div class="avatars">
+          <!-- <img
+            class="avatar-img admin"
+            src="img/admin.jfif"
+            alt="picture of admin"
+          /> -->
+          <img
+            class="avatar-img student"
+            src="/static/img/student.jpg"
+            alt="picture of student"
+          />
+        </div>
+        <div class="header-2">
+          <h3 class="text">Hello <span class="inline">Student</span></h3>
+          <h3>Log In below to get started</h3>
+        </div>
+
+        <form class="main-form" method="POST">
+          {% csrf_token %}
+          <div class="form">
+            <input
+              id="email"
+              name="username"
+              placeholder="username"
+              required="required"
+            />
+          </div>
+          <div class="form">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="password"
+              required="required"
+            />
+          </div>
+          <button class="form-button btn" name="login">Log In</button>
+        </form>
+
+        {% for m in messages %}
+          <p style="color: #FAF0E6" id="messages">{{ m }}</p>
+        {% endfor %}
+
+        <div class="last">
+          <p class="forgot">Forgot Password?</p>
+          <a class="here" href="">click here</a>
+        </div>
+      </section>
+    </main>
+    <div class="overlay hidden"></div>
+    <div class="about-modal hidden">
+      <button class="about-close-modal">&times;</button>
+      <div class="about-container">
+      <h1>This is the about page</h1>
+      <p>The Intelligent Library System is a web application that is designed to make the management of library resources, such as books, journals and multimedia content, more efficient and significantly increase the efficiency of its librarians.
+
+This system is divided into two parts. One is the user interface, which allows user to log in to their personal accounts and take various operations, such as borrowing books, returning books, extending loan periods and reporting book defects. The other part is the administrator interface, where the administrator can manage all student accounts and maintenance of all the books in the library. In addition, the system helps administrators to check the number and status of books in each section and assign staff to deal with book defects issues reported by students.
+</p>
+    </div>
+    </div>
+  </body>
+</html>

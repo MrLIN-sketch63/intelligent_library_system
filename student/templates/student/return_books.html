@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/styleBook.css">
+  <script defer src="/static/js/scriptBook.js"></script>
+  <title>Book</title>
+</head>
+<body>
+  <div class="main">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <h1 class="title">{{found_book.title}}</h1>
+            <p class="isbn">ISBN:&nbsp{{found_book.isbn}}</p>
+            <p class="author">Author:&nbsp{{found_book.author}}</p>
+            <p class="category">Category:&nbsp{{found_book.category}}</p>
+            <p class="description">{{found_book.description}}</p>
+            <p class="confirmText">Click confirm to return this book</p>
+            <button class="confirm" name="return_confirm">Confirm</button>
+        </div>
+    </form>
+  </div>
+
+  <div class="button-container">
+    <button class="btn-11" name="inventory">Manage Your Inventory</button>
+    <button class="btn-22" name="s_book">Search For New Books</button>
+    <button class="btn-33" name="complaint">Lodge a Complaint</button>
+    <button class="btn-44" name="account">Your Account</button>
+    <button class="btn-55" name="logout">Log Out</button>
+  </div>
+
+</body>
+</html>

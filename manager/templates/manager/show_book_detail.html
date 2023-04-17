@@ -1,0 +1,16 @@
+<div>
+    <h1> You can update book detail there</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {% for book in form %}
+            <div class="form-group">
+                <label class="control-label col-xs-4">{{ book.label_tag }}</label>
+                <div class="col-xs-8">
+                    {{ book }}
+                </div>
+            </div>
+        {% endfor %}
+        <button style="font-size:20px;width : 150px;height : 35px; position: absolute;left:1%;top:50%" name="add_book">Save</button>
+    </form>
+</div>

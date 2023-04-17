@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+   <!-- Bootstrap -->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- 引入 Bootstrap -->
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+
+    h1 {
+        font-size: 36px;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 18px;
+    }
+
+    .jumbotron {
+      position: relative;
+    }
+
+
+    .book-list{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 20px;
+        justify-items: center;
+    }
+    .book h2{
+        text-align: center;
+    }
+
+    .book{
+        background-color: #f2f2f2;
+        border-radius: 10px;
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .book h3{
+        font-size: 1.2em;
+
+    }
+    .book a{
+        display: block;
+    }
+    .book a:hover{
+        color: #ff0000;
+        text-decoration: underline;
+    }
+
+    #container {
+        margin:0px auto;
+        width: max-content;
+        height: max-content;
+        text-align: center;
+    }
+
+    .btn{
+        display: inline-block;
+        background-color: #4c90af;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 10px;
+        cursor: pointer;
+    }
+  </style>
+<body>
+
+<div id="container">
+    <form method="POST" action="" class="book-list" style="width: 300px; height: 120px;">
+        <div class="book">
+            {% csrf_token %}
+            <h2> Book detail: </h2>
+            <h3> Title {{get_book.title}} </h3>
+            <h3> ISBN {{get_book.isbn}} </h3>
+            <h3> Author {{get_book.author}} </h3><br>
+            <h3> Are you sure you want to delete "{{get_book.title}}" ?</h3>
+        </div>
+        <a href="{{request.META.HTTP_REFERER}}" style="width: 100px;height: 50px; position: relative;  right: 70px;" class="btn">Back</a>
+        <input type="submit" value="Confirm" style="width: 100px;height: 50px; position: relative; top: -90px;left: 50px;" class="btn" >
+
+    </form>
+</div>
+
+</body>
+<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- 包括所有已编译的插件 -->
+<script src="js/bootstrap.min.js"></script>
+
+</html>

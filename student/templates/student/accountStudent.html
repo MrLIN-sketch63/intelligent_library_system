@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/styleAccountStudent.css" />
+    <script defer src="/static/js/scriptAccountStudent.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="main">
+      <form method="POST">
+      {% csrf_token %}
+      <h1 class="header">Your Account Details</h1>
+      <div class="details">
+        <div class="username flex">
+          <p class="temp">Username: &nbsp{{current_user.username}}</p>
+        </div>
+        <div class="username flex">
+          <p class="temp">Username: &nbsp{{student_info.studentID}}</p>
+        </div>
+        <div class="email flex">
+          <p class="temp">E-mail: &nbsp{{current_user.email}}</p>
+        </div>
+        <div class="first flex">
+          <p class="temp">First Name: &nbsp{{current_user.first_name}}</p>
+        </div>
+        <div class="last flex">
+          <p class="temp">Last Name: &nbsp{{current_user.last_name}}</p>
+        </div>
+      </div>
+      <div class="password">
+        <label for="inputField" class="enter">Reset Password</label>
+        <input type="password" id="inputField" name="reset_password" class="input" />
+      </div>
+      <div class="password">
+        <label for="inputField" class="enter">Confirm Password</label>
+        <input type="password" id="inputField" name="confirm_reset_password" class="input" />
+        <button type="submit" class="submit">Submit</button>
+      </div>
+      </form>
+      <div class="button-container">
+        <form method="POST">
+            {% csrf_token %}
+            <button class="btn-2" name="s_book">Search For New Books</button>
+            <button class="btn-1" name="inventory">Manage Your Inventory</button>
+            <button class="btn-3" name="complaint">Lodge a Complaint</button>
+            <button class="btn-4" name="account">Your Account</button>
+            <button class="btn-5" name="logout">Log Out</button>
+        </form>
+
+      </div>
+    </div>
+  </body>
+</html>

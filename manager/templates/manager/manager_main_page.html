@@ -1,0 +1,29 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/styleStudentLanding.css" />
+    <script defer src="/static/js/scriptStudentLanding.js"></script>
+    <title>Student - Landing Page</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <h1 class="headerChild">Welcome {{ user.username }}!</h1>
+        <p>Choose an option below</p>
+      </div>
+      <div class="button-container">
+        <form method="POST">
+            {% csrf_token %}
+            <button class="btn-3" name="book_inventory">Book Inventory</button>
+            <button class="btn-4" name="borrowed_books"> Loaned books</button>
+            <button class="btn-1" name="student_complaint">Student complaints</button>
+            <button class="btn-2" name="student_accounts"> Student Accounts</button>
+            <button class="btn-5" name="logout">Log Out</button>
+        </form>
+
+      </div>
+    </div>
+  </body>
+</html>

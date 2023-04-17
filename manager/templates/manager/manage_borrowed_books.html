@@ -1,0 +1,79 @@
+<style>
+    /* Style for the back button */
+    .btn {
+        background-color: #6495ED;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    /* Style for the book list */
+    .book-list {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px #ddd;
+    }
+
+    /* Style for the book titles */
+    .book-list h2 {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    /* Style for the book details */
+    .book-list h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    /* Style for the links */
+    .book-list a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    /* Style for the links on hover */
+    .book-list a:hover {
+        text-decoration: underline;
+    }
+
+    /* Style for the message when no defect books are found */
+    .no-defect-books {
+        font-size: 24px;
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+
+<a href="{% url 'mMainPage'%}" class="btn"> Back </a>
+{% load custom_filters %}
+
+<br>
+
+{% if borrowed_books|list_length == 0 %}
+    <div class="no-defect-books">
+        <h2> No one borrowed books from the library </h2>
+    </div>
+{% else %}
+    <div class="book-list">
+        <h2> The books shown below have been loaned  </h2>
+        <form method="POST">
+            {% for b in borrowed_books %}
+            <a href="{% url 'extendExpiryDate' b.borrow_book_isbn.isbn %}">Borrower name: {{b.borrower_name}} <br> Borrower ID: {{b.borrow_ID}}
+                <br> Borrower ISBN:{{b.borrow_book_isbn.isbn}} <br> Borrower Title: {{b.borrow_book_isbn.title}}
+                <br> Loan date: {{b.loan_date}} <br> Expiry date: {{b.expiry_date}}</a><br><br>
+            <hr>
+            {% endfor %}
+        </form>
+    </div>
+{% endif %}

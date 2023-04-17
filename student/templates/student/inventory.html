@@ -1,0 +1,57 @@
+{% load student_custom_filters %} <!--  load the custom_filters module -->
+
+<style>
+    .inventory-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+</style>
+
+
+
+<div>
+    <h1> Click a specify book to return!  </h1><br>
+    <a href="{% url 'sMainPage' %}"> Back </a><br><br>
+</div>
+
+
+
+<div class="inventory-container">
+    <div>
+        <br>
+        <h3>Browse Topics</h3>
+        <hr>
+
+        <div>
+            <a href="{% url 'inventory' %}">ALL</a>
+        </div>
+
+        {% for b in book_category %}
+        <div>
+            <a href="{% url 'inventory' %}?q={{b.category_name}}">{{b.category_name}}</a>
+        </div>
+        {% endfor %}
+
+    </div>
+    {% if available_book|list_length == 0 %}
+        <h2> You hava not borrowed any books</h2>
+    {% else %}
+        <div>
+            <br>
+            <h2> Book list: </h2>
+            {% for book in available_book %}
+            <div>
+                <a href="{% url 'returnBooks' book.borrow_book_isbn.isbn %}"> {{ book.borrow_book_isbn.title }} &nbsp(ISBN: {{book.borrow_book_isbn.isbn}})
+                    &nbsp&nbsp [Loan Date: {{book.loan_date}}] &nbsp&nbsp [Expiry: {{book.expiry_date}}]  </a>
+            </div>
+
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+
+
+
+
+

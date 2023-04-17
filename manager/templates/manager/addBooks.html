@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/styleComplaintStudent.css" />
+    <script defer src="/static/js/scriptComplaintStudent.js"></script>
+    <title>Complaint Page</title>
+  </head>
+  <body>
+
+    <div class="main">
+      <div>
+          <h1>Please add books to the inventory</h1>
+      </div>
+      <form method="POST">
+          {% csrf_token %}
+          <div class="one">
+            <label for="books" class="books">Title:</label>
+                {{ bookForm.title }}
+          </div>
+          <br>
+          <div class="two">
+            <label for="inputField" class="enter">ISBN:</label>
+              {{ bookForm.isbn }}
+          </div>
+          <br>
+          <div class="two">
+            <label for="inputField" class="enter">Author</label>
+              {{ bookForm.author }}
+          </div>
+          <br>
+          <div class="two">
+            <label for="inputField" class="enter">Category</label>
+              {{ bookForm.category }}
+          </div>
+          <br>
+          <div class="two">
+            <label for="inputField" class="enter">Description</label>
+              {{ bookForm.description }}
+            <button type="submit" class="submit">Add</button>
+          </div>
+      </form>
+      <div class="button-container">
+            <a class="btn-3">Back</a>
+      </div>
+    </div>
+  </body>
+</html>

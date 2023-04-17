@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Books</title>
+    <link rel="stylesheet" href="/static/css/styleSearchBooksStudent.css" />
+    <script defer src="/static/js/scriptSearchBooksStudent.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <h1 class="header1">Choose a book from the list</h1>
+        <p class="header2">Or search it using the search feature below</p>
+      </div>
+      <div class="search-container">
+        <form method="POST", action="{% url 'searchBook' %}">
+            {% csrf_token %}
+            <input class="input" name="search" type="text" placeholder="Tip: use a single keyword!😉" />
+            <button class="search">Search</button>
+        </form>
+      </div>
+      <div class="button-container">
+            <a class="btn-1" href="{% url 'searchBook' %}">All</a>
+            <a class="btn-2" href="{% url 'searchBook' %}?q=Education">Education</a>
+            <a class="btn-3" href="{% url 'searchBook' %}?q=Fiction">Fiction</a>
+            <a class="btn-4" href="{% url 'searchBook' %}?q=Biography">Biography</a>
+            <a class="btn-5" href="{% url 'searchBook' %}?q=Comics">Comics</a>
+            <a class="btn-6" href="{% url 'searchBook' %}?q=History">History</a>
+      </div>
+
+      <div class="books">
+        <ul class="list">
+          {% for b in book_found_check %}
+          <li class="one">
+              <a href="{% url 'loanBook' %}?loan_book_isbn={{b.isbn}}"> {{ b.title }} &nbsp[Author: {{b.author}} ] &nbsp [ISBN: {{b.isbn}} ]</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="button-container">
+      <form method="POST">
+          {% csrf_token %}
+          <button class="btn-11" name="inventory" >Manage Your Inventory</button>
+          <button class="btn-22" name="s_book">Search For New Books</button>
+          <button class="btn-33" name="complaint">Lodge a Complaint</button>
+          <button class="btn-44" name="account">Your Account</button>
+          <button class="btn-55" name="logout">Log Out</button>
+      </form>
+    </div>
+  </body>
+</html>

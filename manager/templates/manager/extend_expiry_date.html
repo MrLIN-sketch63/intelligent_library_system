@@ -1,0 +1,68 @@
+<style>
+    .btn {
+      display: block;
+      margin: 0 auto;
+      background-color: #4c90af;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #31708f;
+    }
+
+    .book-list{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 20px;
+        justify-items: center;        
+    }
+    .book h2{
+        text-align: center;
+    }
+
+    .book{
+        background-color: #f2f2f2;
+        border-radius: 10px;
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .book h3{
+        font-size: 1.2em;
+ 
+    }
+    .book a{
+        display: block;
+    }
+    .book a:hover{
+        color: #ff0000;
+        text-decoration: underline;
+    }
+
+</style>
+<div class="book-list">
+    <form method="POST">
+        <div class="book">
+            {% csrf_token %}
+            <h2> Book Detail</h2>
+            <h3>Borrower name: {{get_borrow_session.borrower_name}} </h3>
+            <h3>Borrower ID: {{get_borrow_session.borrower_ID}} </h3>
+            <h3>Book ISBN: {{get_borrow_session.borrow_book_isbn.isbn}} </h3>
+            <h3>Book Title: {{get_borrow_session.borrow_book_isbn.title}} </h3>
+            <h3>Loan Date Start: {{get_borrow_session.loan_date}} </h3>
+            <h3>Expire Date: {{get_borrow_session.expiry_date}} </h3>
+            <button name="extend_expiry" class="btn"> Extend Expiry </button>
+        </div>
+  
+    </form>
+
+</div>
